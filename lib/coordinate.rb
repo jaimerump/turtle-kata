@@ -25,10 +25,16 @@ class Coordinate
 		@y = y
 	end
 
-	# Comparison object
-	#
+	# Comparison operator
+	# @param [Object] object The object to compare to
+	# @return [Boolean]
 	def ==(object)
 		return self.class.name == object.class.name && @x == object.x && @y == object.y
+	end
+
+	# Renders the coordinate as string
+	def to_s
+		"(#{@x},#{@y})"
 	end
 
 end

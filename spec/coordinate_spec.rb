@@ -53,7 +53,14 @@ describe Coordinate do
 			expect( c == c2 ).to be true
 		end
 
+	end
 
+	describe "#to_s" do 
+
+		it "outputs the coordinate" do 
+			c = Coordinate.new(3,5)
+			expect(c.to_s).to eq("(3,5)")
+		end
 
 	end
 

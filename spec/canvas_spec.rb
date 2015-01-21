@@ -44,5 +44,31 @@ describe Canvas do
 		end
 
 	end
+
+	describe "#mark_as_traversed" do 
+
+		context "coordinate is outside canvas" do
+
+			it "throws RangeError" do 
+				c = Canvas.new(5)
+
+				expect{ c.mark_as_traversed( Coordinate.new(5,5) ) }.to raise_error(RangeError, "coordinate (5,5) is outside of the canvas")
+			end
+
+		end
+
+		context "coordinate is inside canvas" do 
+
+			it "replaces the value with the traversed string" do 
+				canvas = Canvas.new(5)
+				coord = Coordinate.new(3,4)
+				canvas.mark_as_traversed(coord)
+
+				expect( canvas.grid[3][4] ).to eq(Canvas::TRAVERSED_CELL_STRING)
+			end
+
+		end
+
+	end
 	
 end
