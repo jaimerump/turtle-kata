@@ -10,6 +10,8 @@ class Canvas
 
 	# Attributes
 
+	attr_accessor :grid
+
 	# @!attribute [r] grid
 	# 	The grid that the canvas represents, it's a 2D array of strings
 	@grid = []
@@ -34,6 +36,8 @@ class Canvas
 		raise ArgumentError.new("#{length} is not an Integer") if !length.is_a? Integer
 		raise ArgumentError.new("length must be greater than 0") if length <= 0
 		raise ArgumentError.new("length must be an odd number") if length.even?
+
+		@grid = Array.new(3, Array.new(3, UNTRAVERSED_CELL_STRING) )
 	end
 
 	# The coordinate for the center of the grid

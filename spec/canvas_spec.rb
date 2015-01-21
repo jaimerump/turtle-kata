@@ -25,6 +25,13 @@ describe Canvas do
 			expect{ c = Canvas.new(11) }.not_to raise_error
 		end
 
+		it "defines the grid" do 
+			c = Canvas.new(3)
+			grid = [ ['.','.','.'], ['.','.','.'], ['.','.','.'] ]
+
+			expect(c.grid).to eq(grid)
+		end
+
 	end
 	
 end

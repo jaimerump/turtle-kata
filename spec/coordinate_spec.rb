@@ -20,6 +20,16 @@ describe Coordinate do
 			expect{ c = Coordinate.new(2, 2) }.not_to raise_error
 		end
 
+		it "sets x to the first argument" do 
+			c = Coordinate.new(2, 3)
+			expect(c.x).to eq(2)
+		end
+
+		it "sets y to the second argument" do 
+			c = Coordinate.new(2, 3)
+			expect(c.y).to eq(3)
+		end
+
 	end
 
 end
