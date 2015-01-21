@@ -5,7 +5,6 @@
 #
 
 require 'Coordinate'
-require 'OffTheCanvasError'
 
 class Canvas
 
@@ -23,15 +22,18 @@ class Canvas
 	COLUMN_SEPARATOR = ' '
 	# The string used to separate rows in the output
 	ROW_SEPARATOR = '\n'
-	
+
 
 	# Functions
 
 	# Creates the canvas from the given length
 	# @param [Integer] length The length of the sides
 	# @return [Canvas]
-	# @raise [InvalidSizeError] if the length is not a positive odd number
-	def init(length)
+	# @raise [ArgumentError] if the length is not an integer, not positive, or even
+	def initialize(length)
+		raise ArgumentError.new("#{length} is not an Integer") if !length.is_a? Integer
+		raise ArgumentError.new("length must be greater than 0") if length <= 0
+		raise ArgumentError.new("length must be an odd number") if length.even?
 	end
 
 	# The coordinate for the center of the grid
@@ -41,8 +43,9 @@ class Canvas
 
 	# Marks the given coordinate as having been traversed
 	# @param [Coordinate] coordinate The coordinate to mark
-	# @raise [OffTheCanvasError] if the coordinate is outside of the canvas
+	# @raise [RangeError] if the coordinate is outside of the canvas
 	def mark_as_traversed(coordinate)
+	end
 
 	# Gives a nice pretty string version of the grid
 	# @return [String]

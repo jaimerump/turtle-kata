@@ -4,9 +4,8 @@
 # with its movements described as an angle and a scalar.
 #
 
-require 'InvalidAngleError'
-require 'OffTheCanvasError'
 require 'Coordinate'
+require 'Canvas'
 
 class Turtle
 
@@ -37,7 +36,7 @@ class Turtle
 	# 	An integer representing how far, on each step, the turtle will move,
 	# 	vertically based on its current angle
 	@vertical_step = 1
-	
+
 
 	# Functions
 
@@ -50,14 +49,14 @@ class Turtle
 	# Turns the turtle counter-clockwise by $change degrees.
 	# If the angle passes 360, it loops back around 0.
 	# @param [Integer] change The amount to change the angle by
-	# @raise [InvalidAngleError] if the angle isn't a multiple of 45
+	# @raise [ArgumentError] if the angle isn't a multiple of 45
 	def turn_left(change)
 	end
 
 	# Turns the turtle clockwise by $change degrees.
 	# If the angle passes 0, it loops back around 3600.
 	# @param [Integer] change The amount to change the angle by
-	# @raise [InvalidAngleError] if the angle isn't a multiple of 45
+	# @raise [ArgumentError] if the angle isn't a multiple of 45
 	def turn_right(change)
 	end
 
@@ -75,7 +74,7 @@ class Turtle
 	# If it is facing diagonally, it moves both horizontally and vertically
 	# by one space.
 	# @param [Integer] spaces The number of spaces to move
-	# @raise [OffTheCanvasError] if the turtle walks off the canvas
+	# @raise [RangeError] if the turtle walks off the canvas
 	def move_forward(spaces)
 	end
 
@@ -83,7 +82,7 @@ class Turtle
 	# If it is facing diagonally, it moves both horizontally and vertically
 	# by one space.
 	# @param [Integer] spaces The number of spaces to move
-	# @raise [OffTheCanvasError] if the turtle backs off the canvas
+	# @raise [RangeError] if the turtle backs off the canvas
 	def move_backward(spaces)
 	end
 
