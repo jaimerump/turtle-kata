@@ -37,6 +37,7 @@ class Turtle
 	# 	An integer representing how far, on each step, the turtle will move,
 	# 	vertically based on its current angle
 	@vertical_step = 1
+	
 
 	# Functions
 
