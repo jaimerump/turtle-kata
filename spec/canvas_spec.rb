@@ -33,5 +33,16 @@ describe Canvas do
 		end
 
 	end
+
+	describe "#center" do 
+
+		it "returns the coordinate at the center of the canvas" do 
+			canvas = Canvas.new(5)
+			coord = Coordinate.new(3, 3)
+
+			expect(canvas.center).to eq(coord)
+		end
+
+	end
 	
 end

@@ -32,4 +32,29 @@ describe Coordinate do
 
 	end
 
+	describe '==' do 
+
+		it "returns false if they're not the same type" do 
+			c = Coordinate.new(3, 3)
+
+			expect( c == "3,3" ).to be false
+		end
+
+		it "returns true if they are the same object" do 
+			c = Coordinate.new(3, 3)
+
+			expect( c == c ).to be true
+		end
+
+		it "returns true if the are the same point" do 
+			c = Coordinate.new(3, 3)
+			c2 = Coordinate.new(3, 3)
+
+			expect( c == c2 ).to be true
+		end
+
+
+
+	end
+
 end

@@ -37,12 +37,14 @@ class Canvas
 		raise ArgumentError.new("length must be greater than 0") if length <= 0
 		raise ArgumentError.new("length must be an odd number") if length.even?
 
-		@grid = Array.new(3, Array.new(3, UNTRAVERSED_CELL_STRING) )
+		@grid = Array.new(length, Array.new(length, UNTRAVERSED_CELL_STRING) )
 	end
 
 	# The coordinate for the center of the grid
 	# @return [Coordinate]
 	def center
+		x = ( @grid.length.to_f / 2 ).ceil
+		coord = Coordinate.new(x, x)
 	end
 
 	# Marks the given coordinate as having been traversed

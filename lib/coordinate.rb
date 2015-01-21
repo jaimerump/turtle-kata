@@ -25,4 +25,10 @@ class Coordinate
 		@y = y
 	end
 
+	# Comparison object
+	#
+	def ==(object)
+		return self.class.name == object.class.name && @x == object.x && @y == object.y
+	end
+
 end
