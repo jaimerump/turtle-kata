@@ -52,9 +52,79 @@ describe Turtle do
 			expect(turtle.angle).to eq(starting_angle+45)
 		end
 
+		it "recalculates horizontal_step" do 
+			turtle.turn_left(90)
+			questioned_step = turtle.horizontal_step
+
+			# Manually recalculate
+			turtle.recalculate_horizontal_step
+			confirmed_step = turtle.horizontal_step
+
+			expect(questioned_step).to eq(confirmed_step)
+		end
+
+		it "recalculates vertical_step" do 
+			turtle.turn_left(90)
+			questioned_step = turtle.vertical_step
+
+			# Manually recalculate
+			turtle.recalculate_vertical_step
+			confirmed_step = turtle.vertical_step
+
+			expect(questioned_step).to eq(confirmed_step)
+		end
+
 	end
 
 	describe "#turn_right" do 
+
+		it "raises ArgumentError if angle isn't integer" do 
+			expect{ turtle.turn_right(45.00) }.to raise_error(ArgumentError, "45.0 is not an Integer")
+		end
+
+		it "raises ArgumentError if angle isn't multiple of 45" do 
+			expect{ turtle.turn_right(48) }.to raise_error(ArgumentError, "48 is not a multiple of 45")
+		end
+
+		it "subtracts the param from the current angle" do 
+			starting_angle = turtle.angle
+			turtle.turn_right(45)
+			expect(turtle.angle).to eq(starting_angle-45)
+		end
+
+		it "rolls back around if it passes 0" do 
+			starting_angle = turtle.angle
+			turtle.turn_right(405)
+			if starting_angle >= 45
+				expect(turtle.angle).to eq(starting_angle-45)
+			else
+				expect(turtle.angle).to eq(315)
+			end
+
+		end
+
+		it "recalculates horizontal_step" do 
+			turtle.turn_right(90)
+			questioned_step = turtle.horizontal_step
+
+			# Manually recalculate
+			turtle.recalculate_horizontal_step
+			confirmed_step = turtle.horizontal_step
+
+			expect(questioned_step).to eq(confirmed_step)
+		end
+
+		it "recalculates vertical_step" do 
+			turtle.turn_right(90)
+			questioned_step = turtle.vertical_step
+
+			# Manually recalculate
+			turtle.recalculate_vertical_step
+			confirmed_step = turtle.vertical_step
+
+			expect(questioned_step).to eq(confirmed_step)
+		end
+
 	end
 
 	describe "#recalculate_horizontal_step" do
