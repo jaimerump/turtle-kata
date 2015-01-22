@@ -31,6 +31,27 @@ describe Turtle do
 	end
 
 	describe "#turn_left" do 
+
+		it "raises ArgumentError if angle isn't integer" do 
+			expect{ turtle.turn_left(45.00) }.to raise_error(ArgumentError, "45.0 is not an Integer")
+		end
+
+		it "raises ArgumentError if angle isn't multiple of 45" do 
+			expect{ turtle.turn_left(48) }.to raise_error(ArgumentError, "48 is not a multiple of 45")
+		end
+
+		it "adds the param to the current angle" do 
+			starting_angle = turtle.angle
+			turtle.turn_left(180)
+			expect(turtle.angle).to eq(starting_angle+180)
+		end
+
+		it "rolls back around if it passes 360" do 
+			starting_angle = turtle.angle
+			turtle.turn_left(405)
+			expect(turtle.angle).to eq(starting_angle+45)
+		end
+
 	end
 
 	describe "#turn_right" do 

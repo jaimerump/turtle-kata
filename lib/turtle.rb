@@ -60,14 +60,18 @@ class Turtle
 	# Turns the turtle counter-clockwise by $change degrees.
 	# If the angle passes 360, it loops back around 0.
 	# @param [Integer] change The amount to change the angle by
-	# @raise [ArgumentError] if the angle isn't a multiple of 45
+	# @raise [ArgumentError] if the angle isn't an integer multiple of 45
 	def turn_left(change)
+		raise ArgumentError.new("#{change} is not an Integer") if !change.is_a? Integer
+		raise ArgumentError.new("#{change} is not a multiple of 45") if change % 45 != 0
+
+		@angle = (@angle + change) % 360
 	end
 
 	# Turns the turtle clockwise by $change degrees.
-	# If the angle passes 0, it loops back around 3600.
+	# If the angle passes 0, it loops back around 360.
 	# @param [Integer] change The amount to change the angle by
-	# @raise [ArgumentError] if the angle isn't a multiple of 45
+	# @raise [ArgumentError] if the angle isn't an integer multiple of 45
 	def turn_right(change)
 	end
 
