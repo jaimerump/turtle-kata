@@ -72,12 +72,17 @@ class Turtle
 	end
 
 	# Updates the horizontal_step attribute when needed
-	# @return [Integer]
 	def recalculate_horizontal_step
+		if @angle == 90 || @angle == 270
+			@horizontal_step = 0
+		elsif @angle > 90 && @angle < 270
+			@horizontal_step = -1
+		else
+			@horizontal_step = 1
+		end
 	end
 
 	# Updates the vertical_step attribute when needed
-	# @return [Integer]
 	def recalculate_vertical_step
 	end
 
