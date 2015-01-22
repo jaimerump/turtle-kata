@@ -10,13 +10,14 @@ require 'Canvas'
 class Turtle
 
 	# Attributes
+	attr_accessor :angle, :position, :horizontal_step, :vertical_step
 
 	# @!attribute [r] angle
 	# 	The direction in which the turtle is facing, as an angle in degrees.
 	# 	0 degrees represents the x axis. The turtle starts facing straight up,
 	# 	so 90 degrees. For the purposes of this project, the angle must be a
 	# 	multiple of 45 degrees. The angle must be between 0 and 360 degrees.
-	@angle = 90
+	@angle
 
 	# @!attribute [r] position
 	# 	The position the turtle is currently in on the canvas as a Coordinate
@@ -30,12 +31,14 @@ class Turtle
 	# @!attribute [rw] horizontal_step
 	# 	An integer representing how far, on each step, the turtle will move,
 	# 	horizontally based on its current angle
-	@horizontal_step = 0
+	# 	Negative to go left, positive to go right
+	@horizontal_step
 
 	# @!attribute [rw] vertical_step
 	# 	An integer representing how far, on each step, the turtle will move,
 	# 	vertically based on its current angle
-	@vertical_step = 1
+	# 	Negative to go up, positive to go down
+	@vertical_step
 
 
 	# Functions
@@ -43,7 +46,15 @@ class Turtle
 	# Initializes the turtle and puts it at the center of the given canvas
 	# @param [Canvas] canvas The canvas to put the turtle on
 	# @return [Turtle]
-	def init(canvas)
+	# @raise [ArgumentError] if the argument is not a Canvas
+	def initialize(canvas)
+		raise ArgumentError.new("Argument is not a Canvas") if !canvas.is_a? Canvas
+
+		@canvas = canvas
+		@position = canvas.center
+		@angle = 90
+		#@horizontal_step = recalculate_horizontal_step
+		#@vertical_step = recalculate_vertical_step
 	end
 
 	# Turns the turtle counter-clockwise by $change degrees.

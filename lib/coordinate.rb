@@ -4,8 +4,7 @@
 # a container for two ints.
 class Coordinate
 
-	attr_accessor :x
-	attr_accessor :y
+	attr_accessor :x, :y
 
 	# The x position of this coordinate
 	@x = 0
