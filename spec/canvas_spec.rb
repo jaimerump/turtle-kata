@@ -64,9 +64,25 @@ describe Canvas do
 				coord = Coordinate.new(3,4)
 				canvas.mark_as_traversed(coord)
 
-				expect( canvas.grid[3][4] ).to eq(Canvas::TRAVERSED_CELL_STRING)
+				expect( canvas.grid[4][3] ).to eq(Canvas::TRAVERSED_CELL_STRING)
 			end
 
+		end
+
+	end
+
+	describe "#print" do
+
+		it "prints the grid" do
+			canvas = Canvas.new(3)
+
+			for i in 0..2
+				canvas.mark_as_traversed(Coordinate.new(1, i))
+			end
+
+			master = '. X .\n. X .\n. X .'
+
+			expect(canvas.print).to eq(master)
 		end
 
 	end

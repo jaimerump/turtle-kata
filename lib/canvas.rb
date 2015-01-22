@@ -14,6 +14,7 @@ class Canvas
 
 	# @!attribute [r] grid
 	# 	The grid that the canvas represents, it's a 2D array of strings
+	# 	Each inner array is a row, and each entry is a cell
 	@grid = []
 
 	# The string used to represent untouched cells
@@ -31,7 +32,7 @@ class Canvas
 	# Creates the canvas from the given length
 	# @param [Integer] length The length of the sides
 	# @return [Canvas]
-	# @raise [ArgumentError] if the length is not an integer, not positive, or even
+	# @raise [ArgumentError] if the length is not an integer, not positive, or is even
 	def initialize(length)
 		raise ArgumentError.new("#{length} is not an Integer") if !length.is_a? Integer
 		raise ArgumentError.new("length must be greater than 0") if length <= 0
@@ -53,12 +54,20 @@ class Canvas
 	def mark_as_traversed(coordinate)
 		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length
 
-		@grid[coordinate.x][coordinate.y] = TRAVERSED_CELL_STRING
+		# Y is row, x is column
+		@grid[coordinate.y][coordinate.x] = TRAVERSED_CELL_STRING
 	end
 
 	# Gives a nice pretty string version of the grid
 	# @return [String]
 	def print
+		lines = []
+
+		@grid.each do |row|
+			lines.push(row.join(COLUMN_SEPARATOR))
+		end
+
+		lines.join(ROW_SEPARATOR)
 	end
 
 end
