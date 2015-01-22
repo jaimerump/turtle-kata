@@ -53,8 +53,8 @@ class Turtle
 		@canvas = canvas
 		@position = canvas.center
 		@angle = 90
-		#@horizontal_step = recalculate_horizontal_step
-		#@vertical_step = recalculate_vertical_step
+		@horizontal_step = recalculate_horizontal_step
+		@vertical_step = recalculate_vertical_step
 	end
 
 	# Turns the turtle counter-clockwise by $change degrees.
@@ -84,6 +84,13 @@ class Turtle
 
 	# Updates the vertical_step attribute when needed
 	def recalculate_vertical_step
+		if @angle == 0 || @angle == 180
+			@vertical_step = 0
+		elsif @angle > 0 && @angle < 180
+			@vertical_step = -1
+		else
+			@vertical_step = 1
+		end
 	end
 
 	# Moves the turtle forward (from its perspective) by $change spaces.
