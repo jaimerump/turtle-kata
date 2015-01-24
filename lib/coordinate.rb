@@ -31,6 +31,28 @@ class Coordinate
 		return self.class.name == object.class.name && @x == object.x && @y == object.y
 	end
 
+	# Addition operator
+	# @param [Coordinate] object The values to add to this coordinate
+	# @return [Coordinate]
+	# @raise [ArgumentError] if argument isn't a coordinate
+	def +(object)
+		raise ArgumentError.new("Argument must be a Coordinate") if !object.is_a? Coordinate
+		@x += object.x
+		@y += object.y
+		return self
+	end
+
+	# Subtraction operator
+	# @param [Coordinate] object The values to subtract from this coordinate
+	# @return [Coordinate]
+	# @raise [ArgumentError] if argument isn't a coordinate
+	def -(object)
+		raise ArgumentError.new("Argument must be a Coordinate") if !object.is_a? Coordinate
+		@x -= object.x
+		@y -= object.y
+		return self
+	end
+
 	# Renders the coordinate as string
 	def to_s
 		"(#{@x},#{@y})"

@@ -55,6 +55,64 @@ describe Coordinate do
 
 	end
 
+	describe "+" do 
+	
+		context "when you pass in a coordinate" do 
+
+			it "adds the x value to its own" do
+				base_coord = Coordinate.new(5,5)
+				operand_coord = Coordinate.new(2,3)
+				expect( (base_coord+operand_coord).x ).to eq(7)
+			end
+
+			it "adds the y value to its own" do
+				base_coord = Coordinate.new(5,5)
+				operand_coord = Coordinate.new(2,3)
+				expect( (base_coord+operand_coord).y ).to eq(8)
+			end
+
+		end
+
+		context "when you pass in a non-coordinate" do 
+
+			it "raises an ArgumentError" do 
+				c = Coordinate.new(5,5)
+				expect{ c+"poop" }.to raise_error(ArgumentError, "Argument must be a Coordinate")
+			end
+
+		end
+
+	end
+
+	describe "-" do 
+
+		context "when you pass in a coordinate" do 
+
+			it "subtracts the x value from its own" do
+				base_coord = Coordinate.new(5,5)
+				operand_coord = Coordinate.new(2,3)
+				expect( (base_coord-operand_coord).x ).to eq(3)
+			end
+
+			it "subtracts the y value from its own" do
+				base_coord = Coordinate.new(5,5)
+				operand_coord = Coordinate.new(2,3)
+				expect( (base_coord-operand_coord).y ).to eq(2)
+			end
+
+		end
+
+		context "when you pass in a non-coordinate" do 
+
+			it "raises an ArgumentError" do 
+				c = Coordinate.new(5,5)
+				expect{ c-"poop" }.to raise_error(ArgumentError, "Argument must be a Coordinate")
+			end
+
+		end
+
+	end
+
 	describe "#to_s" do 
 
 		it "outputs the coordinate" do 
