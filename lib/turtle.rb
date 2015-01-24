@@ -103,20 +103,33 @@ class Turtle
 		@step.y = vertical_step
 	end
 
-	# Moves the turtle forward (from its perspective) by $change spaces.
+	# Moves the turtle forward (from its perspective) by $num_steps spaces.
 	# If it is facing diagonally, it moves both horizontally and vertically
 	# by one space.
-	# @param [Integer] spaces The number of spaces to move
+	# @param [Integer] num_steps The number of steps to take
+	# @raise [ArgumentError] if the argument isn't an integer
 	# @raise [RangeError] if the turtle walks off the canvas
-	def move_forward(spaces)
+	def move_forward(num_steps)
+		raise ArgumentError.new("Argument must be an Integer") if !num_steps.is_a? Integer 
+
+		begin
+			num_steps.times do 
+				@position += @step 
+				@canvas.mark_as_traversed(@position)
+			end
+
+		rescue RangeError
+			raise RangeError.new("Turtle fell off the Canvas")
+		end
+		
 	end
 
-	# Moves the turtle backward (from its perspective) by $change spaces.
+	# Moves the turtle backward (from its perspective) by $num_steps spaces.
 	# If it is facing diagonally, it moves both horizontally and vertically
 	# by one space.
-	# @param [Integer] spaces The number of spaces to move
+	# @param [Integer] num_steps The number of steps to take
 	# @raise [RangeError] if the turtle backs off the canvas
-	def move_backward(spaces)
+	def move_backward(num_steps)
 	end
 
 	

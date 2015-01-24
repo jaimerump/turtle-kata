@@ -55,7 +55,7 @@ class Canvas
 	# @raise [RangeError] if the coordinate is outside of the canvas
 	def character_at(coordinate)
 		raise ArgumentError.new("Argument is not a Coordinate") if !coordinate.is_a? Coordinate
-		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length
+		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length || coordinate.x < 0 || coordinate.y < 0
 
 		@grid[coordinate.y][coordinate.x]
 	end
@@ -65,7 +65,7 @@ class Canvas
 	# @raise [RangeError] if the coordinate is outside of the canvas
 	def mark_as_traversed(coordinate)
 		raise ArgumentError.new("Argument is not a Coordinate") if !coordinate.is_a? Coordinate
-		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length
+		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length || coordinate.x < 0 || coordinate.y < 0
 
 		# Y is row, x is column
 		@grid[coordinate.y][coordinate.x] = TRAVERSED_CELL_STRING

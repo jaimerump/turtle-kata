@@ -234,5 +234,30 @@ describe Turtle do
 		end
 
 	end
+
+	describe "#move_forward" do 
+
+		it "throws an ArgumentError if the parameter isn't an Integer" do 
+			expect{ turtle.move_forward("poop") }.to raise_error(ArgumentError, "Argument must be an Integer")
+		end
+
+		it "adds the turtle's step to its position" do
+			starting_positon = turtle.position
+			step = turtle.step 
+			turtle.move_forward(1)
+
+			expect(turtle.position).to eq(starting_positon+step)
+		end
+
+		it "marks the spaces as traversed" do 
+			turtle.move_forward(1)
+			expect(canvas.character_at(turtle.position)).to eq(Canvas::TRAVERSED_CELL_STRING)
+		end
+
+		it "throws a RangeError if the turtle falls off the canvas" do 
+			expect{ turtle.move_forward(canvas.grid.length*2) }.to raise_error(RangeError, "Turtle fell off the Canvas")
+		end
+
+	end
 	
 end

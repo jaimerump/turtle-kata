@@ -56,6 +56,7 @@ describe Canvas do
 
 			it "throws RangeError" do 
 				expect{ canvas.mark_as_traversed( Coordinate.new(5,5) ) }.to raise_error(RangeError, "coordinate (5,5) is outside of the canvas")
+				expect{ canvas.mark_as_traversed( Coordinate.new(-1,-1) ) }.to raise_error(RangeError, "coordinate (-1,-1) is outside of the canvas")
 			end
 
 		end
@@ -83,6 +84,7 @@ describe Canvas do
 
 			it "throws RangeError" do 
 				expect{ canvas.character_at( Coordinate.new(5,5) ) }.to raise_error(RangeError, "coordinate (5,5) is outside of the canvas")
+				expect{ canvas.character_at( Coordinate.new(-1,-1) ) }.to raise_error(RangeError, "coordinate (-1,-1) is outside of the canvas")
 			end
 
 		end
