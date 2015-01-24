@@ -3,6 +3,8 @@ require 'Canvas'
 
 describe Canvas do
 
+	let(:canvas) { Canvas.new(5) }
+
 	describe ".initialize" do
 
 		it "raises ArgumentError on non-integer arguments" do 
@@ -37,7 +39,6 @@ describe Canvas do
 	describe "#center" do 
 
 		it "returns the coordinate at the center of the canvas" do 
-			canvas = Canvas.new(5)
 			coord = Coordinate.new(3, 3)
 
 			expect(canvas.center).to eq(coord)
@@ -47,12 +48,14 @@ describe Canvas do
 
 	describe "#mark_as_traversed" do 
 
+		it "throws ArgumentError if not given a coordinate" do 
+			expect{ canvas.mark_as_traversed("poop") }.to raise_error(ArgumentError, "Argument is not a Coordinate")
+		end
+
 		context "coordinate is outside canvas" do
 
 			it "throws RangeError" do 
-				c = Canvas.new(5)
-
-				expect{ c.mark_as_traversed( Coordinate.new(5,5) ) }.to raise_error(RangeError, "coordinate (5,5) is outside of the canvas")
+				expect{ canvas.mark_as_traversed( Coordinate.new(5,5) ) }.to raise_error(RangeError, "coordinate (5,5) is outside of the canvas")
 			end
 
 		end
@@ -60,11 +63,34 @@ describe Canvas do
 		context "coordinate is inside canvas" do 
 
 			it "replaces the value with the traversed string" do 
-				canvas = Canvas.new(5)
 				coord = Coordinate.new(3,4)
 				canvas.mark_as_traversed(coord)
 
 				expect( canvas.grid[4][3] ).to eq(Canvas::TRAVERSED_CELL_STRING)
+			end
+
+		end
+
+	end
+
+	describe "#at" do 
+
+		it "throws ArgumentError if not given a coordinate" do 
+			expect{ canvas.character_at("poop") }.to raise_error(ArgumentError, "Argument is not a Coordinate")
+		end
+
+		context "coordinate is outside canvas" do
+
+			it "throws RangeError" do 
+				expect{ canvas.character_at( Coordinate.new(5,5) ) }.to raise_error(RangeError, "coordinate (5,5) is outside of the canvas")
+			end
+
+		end
+
+		context "coordinate is inside canvas" do 
+
+			it "returns the value in that cell" do 
+				expect( canvas.character_at(Coordinate.new(3,4)) ).to eq(canvas.grid[4][3])
 			end
 
 		end

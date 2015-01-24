@@ -48,10 +48,23 @@ class Canvas
 		coord = Coordinate.new(x, x)
 	end
 
+	# The character at the given coordinate
+	# @param [Coordinate] coord The coordinate to get the character from
+	# @return [String]
+	# @raise [ArgumentError] if the argument is not a coordinate
+	# @raise [RangeError] if the coordinate is outside of the canvas
+	def character_at(coordinate)
+		raise ArgumentError.new("Argument is not a Coordinate") if !coordinate.is_a? Coordinate
+		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length
+
+		@grid[coordinate.y][coordinate.x]
+	end
+
 	# Marks the given coordinate as having been traversed
 	# @param [Coordinate] coordinate The coordinate to mark
 	# @raise [RangeError] if the coordinate is outside of the canvas
 	def mark_as_traversed(coordinate)
+		raise ArgumentError.new("Argument is not a Coordinate") if !coordinate.is_a? Coordinate
 		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length
 
 		# Y is row, x is column
