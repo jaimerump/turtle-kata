@@ -62,6 +62,20 @@ describe TurtleKata do
 		end
 
 		context "when the instruction is REPEAT" do 
+
+			it "repeats the bracketed code x times" do 
+				TurtleKata.run_instruction("REPEAT 2 [RT 90]", turtle)
+				expect(turtle).to have_received(:turn_right).with(90).twice
+			end 
+
+			context "when the bracketed code is invalid" do 
+
+				it "raises ArgumentError" do
+					expect{ TurtleKata.run_instruction("REPEAT 2 [JK 5]", turtle) }.to raise_error(ArgumentError, "Invalid instruction JK") 
+				end
+
+			end
+
 		end
 
 		context "when the instuction is something else" do 

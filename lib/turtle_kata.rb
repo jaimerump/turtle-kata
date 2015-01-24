@@ -33,6 +33,27 @@ class TurtleKata
 			turtle.turn_right(arguments.to_i)
 		when "LT"
 			turtle.turn_left(arguments.to_i)
+		when "REPEAT"
+			# Figure out how many times to iterate
+			parts = arguments.split(' ', 2)
+			num_times = parts.first.to_i
+
+			# Pull out the bracketed stuff
+			bracketed_text = parts.last.scan(/\[([^\]]+)\]/).last.last # Returns double nested array
+
+			# Split bracketed text into instructions
+			bracketed_instructions = bracketed_text.scan(/[A-Z]+\s\d+/)
+
+			# Loop the given number of times
+			num_times.times do 
+
+				# Perform each instruction
+				bracketed_instructions.each do |bracketed_instruction|
+					run_instruction(bracketed_instruction, turtle)
+				end
+
+			end
+
 		else
 			raise ArgumentError.new("Invalid instruction #{command}")
 		end
