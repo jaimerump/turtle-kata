@@ -10,6 +10,25 @@ class TurtleKata
 	# Runs the turtle kata with the given instruction file
 	# @param [String] filename The name of the file to use
 	def self.run_with_file(filename)
+		# Read in the file
+		file = File.new(filename, "r")
+
+		# Create the canvas
+		line = file.gets
+		size = line.to_i
+		canvas = Canvas.new(size)
+		turtle = Turtle.new(canvas)
+
+		# Skip line
+		file.gets
+
+		# Run the instructions
+		while (line = file.gets)
+		    run_instruction(line, turtle)
+		end
+
+		# Print the result
+		puts canvas.print
 	end
 
 	# Parses an instruction and runs it
