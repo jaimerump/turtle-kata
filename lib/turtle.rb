@@ -10,7 +10,7 @@ require 'Canvas'
 class Turtle
 
 	# Attributes
-	attr_accessor :angle, :position, :horizontal_step, :vertical_step
+	attr_accessor :angle, :position, :step
 
 	# @!attribute [r] angle
 	# 	The direction in which the turtle is facing, as an angle in degrees.
@@ -28,17 +28,10 @@ class Turtle
 	# 	The canvas the turtle is moving across.
 	@canvas
 
-	# @!attribute [rw] horizontal_step
-	# 	An integer representing how far, on each step, the turtle will move,
-	# 	horizontally based on its current angle
-	# 	Negative to go left, positive to go right
-	@horizontal_step
-
-	# @!attribute [rw] vertical_step
-	# 	An integer representing how far, on each step, the turtle will move,
-	# 	vertically based on its current angle
-	# 	Negative to go up, positive to go down
-	@vertical_step
+	# @!attribute [rw] step
+	# 	A coordinate representing how far, on each step, the turtle will move
+	# 	horizontally and vertically based on its current angle
+	@step
 
 
 	# Functions
@@ -53,8 +46,7 @@ class Turtle
 		@canvas = canvas
 		@position = canvas.center
 		@angle = 90
-		@horizontal_step = recalculate_horizontal_step
-		@vertical_step = recalculate_vertical_step
+		@step = Coordinate.new(0, -1)
 	end
 
 	# Turns the turtle counter-clockwise by $change degrees.
@@ -67,8 +59,7 @@ class Turtle
 
 		@angle = (@angle + ( change % 360 )) % 360
 		
-		recalculate_horizontal_step
-		recalculate_vertical_step
+		recalculate_step
 	end
 
 	# Turns the turtle clockwise by $change degrees.
@@ -85,30 +76,31 @@ class Turtle
 			@angle = @angle - ( change % 360 )
 		end
 
-		recalculate_horizontal_step
-		recalculate_vertical_step
+		recalculate_step
 	end
 
-	# Updates the horizontal_step attribute when needed
-	def recalculate_horizontal_step
+	# Updates the step coordinate when needed
+	def recalculate_step
+		# Calculate horizontal step
 		if @angle == 90 || @angle == 270
-			@horizontal_step = 0
+			horizontal_step = 0
 		elsif @angle > 90 && @angle < 270
-			@horizontal_step = -1
+			horizontal_step = -1
 		else
-			@horizontal_step = 1
+			horizontal_step = 1
 		end
-	end
 
-	# Updates the vertical_step attribute when needed
-	def recalculate_vertical_step
+		# Calculate vertical step
 		if @angle == 0 || @angle == 180
-			@vertical_step = 0
+			vertical_step = 0
 		elsif @angle > 0 && @angle < 180
-			@vertical_step = -1
+			vertical_step = -1
 		else
-			@vertical_step = 1
+			vertical_step = 1
 		end
+
+		@step.x = horizontal_step
+		@step.y = vertical_step
 	end
 
 	# Moves the turtle forward (from its perspective) by $change spaces.

@@ -20,12 +20,12 @@ describe Turtle do
 			expect(turtle.angle).to eq(90)
 		end
 
-		it "sets the horizontal_step" do 
-			expect(turtle.horizontal_step).to eq(0)
+		it "sets the horizontal step" do 
+			expect(turtle.step.x).to eq(0)
 		end
 
-		it "sets the vertical_step" do 
-			expect(turtle.vertical_step).to eq(-1)
+		it "sets the vertical step" do 
+			expect(turtle.step.y).to eq(-1)
 		end
 
 	end
@@ -52,24 +52,24 @@ describe Turtle do
 			expect(turtle.angle).to eq(starting_angle+45)
 		end
 
-		it "recalculates horizontal_step" do 
+		it "recalculates horizontal step" do 
 			turtle.turn_left(90)
-			questioned_step = turtle.horizontal_step
+			questioned_step = turtle.step.x
 
 			# Manually recalculate
-			turtle.recalculate_horizontal_step
-			confirmed_step = turtle.horizontal_step
+			turtle.recalculate_step
+			confirmed_step = turtle.step.x
 
 			expect(questioned_step).to eq(confirmed_step)
 		end
 
-		it "recalculates vertical_step" do 
+		it "recalculates vertical step" do 
 			turtle.turn_left(90)
-			questioned_step = turtle.vertical_step
+			questioned_step = turtle.step.y
 
 			# Manually recalculate
-			turtle.recalculate_vertical_step
-			confirmed_step = turtle.vertical_step
+			turtle.recalculate_step
+			confirmed_step = turtle.step.y
 
 			expect(questioned_step).to eq(confirmed_step)
 		end
@@ -103,128 +103,132 @@ describe Turtle do
 
 		end
 
-		it "recalculates horizontal_step" do 
+		it "recalculates horizontal step" do 
 			turtle.turn_right(90)
-			questioned_step = turtle.horizontal_step
+			questioned_step = turtle.step.x
 
 			# Manually recalculate
-			turtle.recalculate_horizontal_step
-			confirmed_step = turtle.horizontal_step
+			turtle.recalculate_step
+			confirmed_step = turtle.step.x
 
 			expect(questioned_step).to eq(confirmed_step)
 		end
 
-		it "recalculates vertical_step" do 
+		it "recalculates vertical step" do 
 			turtle.turn_right(90)
-			questioned_step = turtle.vertical_step
+			questioned_step = turtle.step.y
 
 			# Manually recalculate
-			turtle.recalculate_vertical_step
-			confirmed_step = turtle.vertical_step
+			turtle.recalculate_step
+			confirmed_step = turtle.step.y
 
 			expect(questioned_step).to eq(confirmed_step)
 		end
 
 	end
 
-	describe "#recalculate_horizontal_step" do
+	describe "#recalculate_step" do
 
-		context "when the turtle is completely vertical" do 
+		describe "recalculates the horizontal" do
 
-			it "returns 0 when straight up" do 
-				turtle.angle = 90
-				turtle.recalculate_horizontal_step
-				expect(turtle.horizontal_step).to eq(0)
+			context "when the turtle is completely vertical" do 
+
+				it "returns 0 when straight up" do 
+					turtle.angle = 90
+					turtle.recalculate_step
+					expect(turtle.step.x).to eq(0)
+				end
+
+				it "returns 0 when straight down" do 
+					turtle.angle = 270
+					turtle.recalculate_step
+					expect(turtle.step.x).to eq(0)
+				end
+
 			end
 
-			it "returns 0 when straight down" do 
-				turtle.angle = 270
-				turtle.recalculate_horizontal_step
-				expect(turtle.horizontal_step).to eq(0)
+			context "when the turtle is facing left" do 
+
+				it "returns -1 when angled left" do 
+					turtle.angle = 135
+					turtle.recalculate_step
+					expect(turtle.step.x).to eq(-1)
+				end
+
+				it "returns -1 when straight left" do 
+					turtle.angle = 180
+					turtle.recalculate_step
+					expect(turtle.step.x).to eq(-1)
+				end
+
 			end
 
-		end
+			context "when the turtle is facing right" do 
 
-		context "when the turtle is facing left" do 
+				it "returns 1 when angled right" do 
+					turtle.angle = 45
+					turtle.recalculate_step
+					expect(turtle.step.x).to eq(1)
+				end
 
-			it "returns -1 when angled left" do 
-				turtle.angle = 135
-				turtle.recalculate_horizontal_step
-				expect(turtle.horizontal_step).to eq(-1)
-			end
+				it "returns 1 when straight right" do 
+					turtle.angle = 0
+					turtle.recalculate_step
+					expect(turtle.step.x).to eq(1)
+				end
 
-			it "returns -1 when straight left" do 
-				turtle.angle = 180
-				turtle.recalculate_horizontal_step
-				expect(turtle.horizontal_step).to eq(-1)
-			end
-
-		end
-
-		context "when the turtle is facing right" do 
-
-			it "returns 1 when angled right" do 
-				turtle.angle = 45
-				turtle.recalculate_horizontal_step
-				expect(turtle.horizontal_step).to eq(1)
-			end
-
-			it "returns 1 when straight right" do 
-				turtle.angle = 0
-				turtle.recalculate_horizontal_step
-				expect(turtle.horizontal_step).to eq(1)
-			end
-
-		end
-
-	end
-
-	describe "#recalculate_vertical_step" do 
-
-		context "when the turtle is completely horizontal" do 
-
-			it "returns 0 when straight right" do
-				turtle.angle = 0
-				turtle.recalculate_vertical_step
-				expect(turtle.vertical_step).to eq(0) 
-			end
-
-			it "returns when straight left" do
-				turtle.angle = 180
-				turtle.recalculate_vertical_step
-				expect(turtle.vertical_step).to eq(0) 
 			end
 
 		end
 
-		context "when the turtle is facing up" do
+		describe "recalculates the vertical" do
 
-			it "returns -1 when straight up" do
-				turtle.angle = 90
-				turtle.recalculate_vertical_step
-				expect(turtle.vertical_step).to eq(-1) 
+			context "when the turtle is completely horizontal" do 
+
+				it "returns 0 when straight right" do
+					turtle.angle = 0
+					turtle.recalculate_step
+					expect(turtle.step.y).to eq(0) 
+				end
+
+				it "returns when straight left" do
+					turtle.angle = 180
+					turtle.recalculate_step
+					expect(turtle.step.y).to eq(0) 
+				end
+
 			end
 
-			it "returns -1 when angled up" do
-				turtle.angle = 45
-				turtle.recalculate_vertical_step
-				expect(turtle.vertical_step).to eq(-1) 
+			context "when the turtle is facing up" do
+
+				it "returns -1 when straight up" do
+					turtle.angle = 90
+					turtle.recalculate_step
+					expect(turtle.step.y).to eq(-1) 
+				end
+
+				it "returns -1 when angled up" do
+					turtle.angle = 45
+					turtle.recalculate_step
+					expect(turtle.step.y).to eq(-1) 
+				end
+
 			end
 
-		end
+			context "when the turtle is facing down" do 
 
-		context "when the turtle is facing down" do 
+				it "returns 1 when straight down" do
+					turtle.angle = 270
+					turtle.recalculate_step
+					expect(turtle.step.y).to eq(1) 
+				end
 
-			it "returns 1 when straight down" do
-				turtle.angle = 270
-				turtle.recalculate_vertical_step
-				expect(turtle.vertical_step).to eq(1) 
-			end
+				it "returns 1 when angled down" do
+					turtle.angle = 225
+					turtle.recalculate_step
+					expect(turtle.step.y).to eq(1) 
+				end
 
-			it "returns 1 when angled down" do
-				turtle.angle = 225
-				turtle.recalculate_vertical_step
-				expect(turtle.vertical_step).to eq(1) 
 			end
 
 		end
