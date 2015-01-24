@@ -4,7 +4,7 @@
 # It's basically just a 2D array of strings.
 #
 
-require 'Coordinate'
+require_relative 'Coordinate'
 
 class Canvas
 
@@ -24,7 +24,7 @@ class Canvas
 	# The string used to separate columns in the output
 	COLUMN_SEPARATOR = ' '
 	# The string used to separate rows in the output
-	ROW_SEPARATOR = '\n'
+	ROW_SEPARATOR = "\n"
 
 
 	# Functions
@@ -38,13 +38,16 @@ class Canvas
 		raise ArgumentError.new("length must be greater than 0") if length <= 0
 		raise ArgumentError.new("length must be an odd number") if length.even?
 
-		@grid = Array.new(length, Array.new(length, UNTRAVERSED_CELL_STRING) )
+		@grid = Array.new(length)
+		for i in 0..(length-1)
+			@grid[i] = Array.new(length, UNTRAVERSED_CELL_STRING)
+		end
 	end
 
 	# The coordinate for the center of the grid
 	# @return [Coordinate]
 	def center
-		x = ( @grid.length.to_f / 2 ).ceil
+		x = ( @grid.length.to_f / 2 ).floor # Keep in mind off-by-one
 		coord = Coordinate.new(x, x)
 	end
 

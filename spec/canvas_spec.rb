@@ -39,7 +39,7 @@ describe Canvas do
 	describe "#center" do 
 
 		it "returns the coordinate at the center of the canvas" do 
-			coord = Coordinate.new(3, 3)
+			coord = Coordinate.new(2, 2) # Keep in mind off-by-one
 
 			expect(canvas.center).to eq(coord)
 		end
@@ -108,7 +108,7 @@ describe Canvas do
 				canvas.mark_as_traversed(Coordinate.new(1, i))
 			end
 
-			master = '. X .\n. X .\n. X .'
+			master = ". X .\n. X .\n. X ."
 
 			expect(canvas.print).to eq(master)
 		end
