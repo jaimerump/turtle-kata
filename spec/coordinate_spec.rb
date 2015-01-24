@@ -1,4 +1,4 @@
-require 'Coordinate'
+require 'coordinate'
 
 describe Coordinate do
 

@@ -4,7 +4,7 @@
 # It's basically just a 2D array of strings.
 #
 
-require_relative 'Coordinate'
+require_relative 'coordinate'
 
 class Canvas
 

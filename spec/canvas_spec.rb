@@ -1,5 +1,5 @@
-require 'Turtle'
-require 'Canvas'
+require 'turtle'
+require 'canvas'
 
 describe Canvas do
 

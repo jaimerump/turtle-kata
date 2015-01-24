@@ -4,8 +4,8 @@
 # with its movements described as an angle and a scalar.
 #
 
-require_relative 'Coordinate'
-require_relative 'Canvas'
+require_relative 'coordinate'
+require_relative 'canvas'
 
 class Turtle
 
