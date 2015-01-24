@@ -121,7 +121,7 @@ class Turtle
 		rescue RangeError
 			raise RangeError.new("Turtle fell off the Canvas")
 		end
-		
+
 	end
 
 	# Moves the turtle backward (from its perspective) by $num_steps spaces.
@@ -130,6 +130,17 @@ class Turtle
 	# @param [Integer] num_steps The number of steps to take
 	# @raise [RangeError] if the turtle backs off the canvas
 	def move_backward(num_steps)
+		raise ArgumentError.new("Argument must be an Integer") if !num_steps.is_a? Integer 
+
+		begin
+			num_steps.times do 
+				@position -= @step 
+				@canvas.mark_as_traversed(@position)
+			end
+
+		rescue RangeError
+			raise RangeError.new("Turtle fell off the Canvas")
+		end
 	end
 
 	
