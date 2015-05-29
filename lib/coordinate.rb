@@ -1,4 +1,3 @@
-##
 # @author Jaime Rump
 # This class represents a coordinate on a grid. It's basically just
 # a container for two ints.
@@ -17,8 +16,8 @@ class Coordinate
   # @param [Integer] y The y position
   # @raise [ArgumentError] if one of the arguments isn't an integer
   def initialize(x, y)
-    raise ArgumentError.new("#{x} is not an Integer") if !x.is_a? Integer
-    raise ArgumentError.new("#{y} is not an Integer") if !y.is_a? Integer
+    raise ArgumentError.new("#{x} is not an Integer") unless x.is_a? Integer
+    raise ArgumentError.new("#{y} is not an Integer")unless y.is_a? Integer
 
     @x = x
     @y = y
@@ -36,7 +35,7 @@ class Coordinate
   # @return [Coordinate]
   # @raise [ArgumentError] if argument isn't a coordinate
   def +(object)
-    raise ArgumentError.new('Argument must be a Coordinate') if !object.is_a? Coordinate
+    raise ArgumentError.new('Argument must be a Coordinate') unless object.is_a? Coordinate
     @x += object.x
     @y += object.y
     return self
@@ -47,13 +46,14 @@ class Coordinate
   # @return [Coordinate]
   # @raise [ArgumentError] if argument isn't a coordinate
   def -(object)
-    raise ArgumentError.new('Argument must be a Coordinate') if !object.is_a? Coordinate
+    raise ArgumentError.new('Argument must be a Coordinate') unless object.is_a? Coordinate
     @x -= object.x
     @y -= object.y
     return self
   end
 
   # Renders the coordinate as string
+  # @return [String]
   def to_s
     "(#{@x}, #{@y})"
   end

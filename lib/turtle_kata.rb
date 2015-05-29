@@ -1,7 +1,5 @@
-##
 # @author Jaime Rump
 # This class runs the turtle kata on a logo file.
-#
 
 require_relative 'turtle'
 
@@ -36,8 +34,8 @@ class TurtleKata
   # @param [Turtle] turtle The turtle to run the instruction on
   # @raise [ArgumentError] if command isn't recognized or turtle is bad
   def self.run_instruction(instruction, turtle)
-    raise ArgumentError.new('Instruction must be a string') if !instruction.is_a? String
-    raise ArgumentError.new('You must pass in a Turtle') if !turtle.is_a? Turtle
+    raise ArgumentError.new('Instruction must be a string') unless instruction.is_a? String
+    raise ArgumentError.new('You must pass in a Turtle') unless turtle.is_a? Turtle
 
     parts = instruction.split(' ', 2)
     command = parts.first

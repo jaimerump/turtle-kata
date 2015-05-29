@@ -1,8 +1,6 @@
-##
 # @author Jaime Rump
 # This class represents a turtle. A turtle is an object that moves around a grid,
 # with its movements described as an angle and a scalar.
-#
 
 require_relative 'coordinate'
 require_relative 'canvas'
@@ -41,7 +39,7 @@ class Turtle
   # @return [Turtle]
   # @raise [ArgumentError] if the argument is not a Canvas
   def initialize(canvas)
-    raise ArgumentError.new('Argument is not a Canvas') if !canvas.is_a? Canvas
+    raise ArgumentError.new('Argument is not a Canvas') unless canvas.is_a? Canvas
 
     @canvas = canvas
     @position = canvas.center
@@ -54,7 +52,7 @@ class Turtle
   # @param [Integer] change The amount to change the angle by
   # @raise [ArgumentError] if the angle isn't an integer multiple of 45
   def turn_left(change)
-    raise ArgumentError.new("#{change} is not an Integer") if !change.is_a? Integer
+    raise ArgumentError.new("#{change} is not an Integer") unless change.is_a? Integer
     raise ArgumentError.new("#{change} is not a multiple of 45") if change % 45 != 0
 
     @angle = (@angle + ( change % 360 )) % 360
@@ -67,7 +65,7 @@ class Turtle
   # @param [Integer] change The amount to change the angle by
   # @raise [ArgumentError] if the angle isn't an integer multiple of 45
   def turn_right(change)
-    raise ArgumentError.new("#{change} is not an Integer") if !change.is_a? Integer
+    raise ArgumentError.new("#{change} is not an Integer") unless change.is_a? Integer
     raise ArgumentError.new("#{change} is not a multiple of 45") if change % 45 != 0
 
     if change > @angle
@@ -110,7 +108,7 @@ class Turtle
   # @raise [ArgumentError] if the argument isn't an integer
   # @raise [RangeError] if the turtle walks off the canvas
   def move_forward(num_steps)
-    raise ArgumentError.new('Argument must be an Integer') if !num_steps.is_a? Integer
+    raise ArgumentError.new('Argument must be an Integer') unless num_steps.is_a? Integer
 
     begin
       num_steps.times do
@@ -130,7 +128,7 @@ class Turtle
   # @param [Integer] num_steps The number of steps to take
   # @raise [RangeError] if the turtle backs off the canvas
   def move_backward(num_steps)
-    raise ArgumentError.new('Argument must be an Integer') if !num_steps.is_a? Integer
+    raise ArgumentError.new('Argument must be an Integer') unless num_steps.is_a? Integer
 
     begin
       num_steps.times do

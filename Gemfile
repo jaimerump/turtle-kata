@@ -9,7 +9,7 @@ gem 'byebug'
 gem 'rspec-rails'
 
 # Format rspec output
-gem 'fuubar', :require => false
+gem 'fuubar', require: false
 
 # Documentation
-gem 'yard', :require => false
+gem 'yard', require: false
