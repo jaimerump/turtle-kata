@@ -39,7 +39,7 @@ class Canvas
     raise ArgumentError.new('length must be an odd number') if length.even?
 
     @grid = Array.new(length)
-    for i in 0..(length-1)
+    for i in 0..(length - 1)
       @grid[i] = Array.new(length, UNTRAVERSED_CELL_STRING)
     end
   end
