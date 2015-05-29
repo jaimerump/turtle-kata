@@ -23,7 +23,7 @@ class Canvas
   # The string used to separate columns in the output
   COLUMN_SEPARATOR = ' '
   # The string used to separate rows in the output
-  ROW_SEPARATOR = '\n'
+  ROW_SEPARATOR = "\n"
 
 
   # Functions
