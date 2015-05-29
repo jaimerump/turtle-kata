@@ -41,7 +41,7 @@ class Turtle
 	# @return [Turtle]
 	# @raise [ArgumentError] if the argument is not a Canvas
 	def initialize(canvas)
-		raise ArgumentError.new("Argument is not a Canvas") if !canvas.is_a? Canvas
+		raise ArgumentError.new('Argument is not a Canvas') if !canvas.is_a? Canvas
 
 		@canvas = canvas
 		@position = canvas.center
@@ -110,7 +110,7 @@ class Turtle
 	# @raise [ArgumentError] if the argument isn't an integer
 	# @raise [RangeError] if the turtle walks off the canvas
 	def move_forward(num_steps)
-		raise ArgumentError.new("Argument must be an Integer") if !num_steps.is_a? Integer 
+		raise ArgumentError.new('Argument must be an Integer') if !num_steps.is_a? Integer 
 
 		begin
 			num_steps.times do 
@@ -119,7 +119,7 @@ class Turtle
 			end
 
 		rescue RangeError
-			raise RangeError.new("Turtle fell off the Canvas")
+			raise RangeError.new('Turtle fell off the Canvas')
 		end
 
 	end
@@ -130,7 +130,7 @@ class Turtle
 	# @param [Integer] num_steps The number of steps to take
 	# @raise [RangeError] if the turtle backs off the canvas
 	def move_backward(num_steps)
-		raise ArgumentError.new("Argument must be an Integer") if !num_steps.is_a? Integer 
+		raise ArgumentError.new('Argument must be an Integer') if !num_steps.is_a? Integer 
 
 		begin
 			num_steps.times do 
@@ -139,7 +139,7 @@ class Turtle
 			end
 
 		rescue RangeError
-			raise RangeError.new("Turtle fell off the Canvas")
+			raise RangeError.new('Turtle fell off the Canvas')
 		end
 	end
 

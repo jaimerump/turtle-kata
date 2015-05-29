@@ -36,7 +36,7 @@ class Coordinate
 	# @return [Coordinate]
 	# @raise [ArgumentError] if argument isn't a coordinate
 	def +(object)
-		raise ArgumentError.new("Argument must be a Coordinate") if !object.is_a? Coordinate
+		raise ArgumentError.new('Argument must be a Coordinate') if !object.is_a? Coordinate
 		@x += object.x
 		@y += object.y
 		return self
@@ -47,7 +47,7 @@ class Coordinate
 	# @return [Coordinate]
 	# @raise [ArgumentError] if argument isn't a coordinate
 	def -(object)
-		raise ArgumentError.new("Argument must be a Coordinate") if !object.is_a? Coordinate
+		raise ArgumentError.new('Argument must be a Coordinate') if !object.is_a? Coordinate
 		@x -= object.x
 		@y -= object.y
 		return self

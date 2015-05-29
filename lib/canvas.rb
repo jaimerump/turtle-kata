@@ -24,7 +24,7 @@ class Canvas
 	# The string used to separate columns in the output
 	COLUMN_SEPARATOR = ' '
 	# The string used to separate rows in the output
-	ROW_SEPARATOR = "\n"
+	ROW_SEPARATOR = '\n'
 
 
 	# Functions
@@ -35,8 +35,8 @@ class Canvas
 	# @raise [ArgumentError] if the length is not an integer, not positive, or is even
 	def initialize(length)
 		raise ArgumentError.new("#{length} is not an Integer") if !length.is_a? Integer
-		raise ArgumentError.new("length must be greater than 0") if length <= 0
-		raise ArgumentError.new("length must be an odd number") if length.even?
+		raise ArgumentError.new('length must be greater than 0') if length <= 0
+		raise ArgumentError.new('length must be an odd number') if length.even?
 
 		@grid = Array.new(length)
 		for i in 0..(length-1)
@@ -57,7 +57,7 @@ class Canvas
 	# @raise [ArgumentError] if the argument is not a coordinate
 	# @raise [RangeError] if the coordinate is outside of the canvas
 	def character_at(coordinate)
-		raise ArgumentError.new("Argument is not a Coordinate") if !coordinate.is_a? Coordinate
+		raise ArgumentError.new('Argument is not a Coordinate') if !coordinate.is_a? Coordinate
 		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length || coordinate.x < 0 || coordinate.y < 0
 
 		@grid[coordinate.y][coordinate.x]
@@ -67,7 +67,7 @@ class Canvas
 	# @param [Coordinate] coordinate The coordinate to mark
 	# @raise [RangeError] if the coordinate is outside of the canvas
 	def mark_as_traversed(coordinate)
-		raise ArgumentError.new("Argument is not a Coordinate") if !coordinate.is_a? Coordinate
+		raise ArgumentError.new('Argument is not a Coordinate') if !coordinate.is_a? Coordinate
 		raise RangeError.new("coordinate #{coordinate.to_s} is outside of the canvas") if coordinate.x >= @grid.length || coordinate.y >= @grid.length || coordinate.x < 0 || coordinate.y < 0
 
 		# Y is row, x is column
