@@ -55,7 +55,7 @@ class Turtle
     raise ArgumentError.new("#{change} is not an Integer") unless change.is_a? Integer
     raise ArgumentError.new("#{change} is not a multiple of 45") if change % 45 != 0
 
-    @angle = (@angle + ( change % 360 )) % 360
+    @angle = (@angle + (change % 360)) % 360
 
     recalculate_step
   end
@@ -69,9 +69,9 @@ class Turtle
     raise ArgumentError.new("#{change} is not a multiple of 45") if change % 45 != 0
 
     if change > @angle
-      turn_left(360 - ( change % 360 ) )
+      turn_left(360 - (change % 360 ))
     else
-      @angle = @angle - ( change % 360 )
+      @angle = @angle - (change % 360)
     end
 
     recalculate_step

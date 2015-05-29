@@ -5,19 +5,19 @@ describe Coordinate do
   describe '.initialize' do
 
     it "raises ArgumentError when x isn't an integer" do
-      expect{ c = Coordinate.new('poop', 2) }.to raise_error(ArgumentError, 'poop is not an Integer')
+      expect { c = Coordinate.new('poop', 2) }.to raise_error(ArgumentError, 'poop is not an Integer')
     end
 
     it "raises ArgumentError when y isn't an integer" do
-      expect{ c = Coordinate.new(2, 'poop') }.to raise_error(ArgumentError, 'poop is not an Integer')
+      expect { c = Coordinate.new(2, 'poop') }.to raise_error(ArgumentError, 'poop is not an Integer')
     end
 
     it 'raises ArgumentError on eecimals' do
-      expect{ c = Coordinate.new(2, 12.0) }.to raise_error(ArgumentError)
+      expect { c = Coordinate.new(2, 12.0) }.to raise_error(ArgumentError)
     end
 
     it 'works fine when both are integers' do
-      expect{ c = Coordinate.new(2, 2) }.not_to raise_error
+      expect { c = Coordinate.new(2, 2) }.not_to raise_error
     end
 
     it 'sets x to the first argument' do
@@ -37,20 +37,20 @@ describe Coordinate do
     it "returns false if they're not the same type" do
       c = Coordinate.new(3, 3)
 
-      expect( c == '3,3' ).to be false
+      expect(c == '3, 3').to be false
     end
 
     it 'returns true if they are the same object' do
       c = Coordinate.new(3, 3)
 
-      expect( c == c ).to be true
+      expect(c == c).to be true
     end
 
     it 'returns true if the are the same point' do
       c = Coordinate.new(3, 3)
       c2 = Coordinate.new(3, 3)
 
-      expect( c == c2 ).to be true
+      expect(c == c2).to be true
     end
 
   end
@@ -62,13 +62,13 @@ describe Coordinate do
       it 'adds the x value to its own' do
         base_coord = Coordinate.new(5, 5)
         operand_coord = Coordinate.new(2, 3)
-        expect( (base_coord + operand_coord).x ).to eq(7)
+        expect((base_coord + operand_coord).x).to eq(7)
       end
 
       it 'adds the y value to its own' do
         base_coord = Coordinate.new(5, 5)
         operand_coord = Coordinate.new(2, 3)
-        expect( (base_coord + operand_coord).y ).to eq(8)
+        expect((base_coord + operand_coord).y).to eq(8)
       end
 
     end
@@ -77,7 +77,7 @@ describe Coordinate do
 
       it 'raises an ArgumentError' do
         c = Coordinate.new(5, 5)
-        expect{ c + 'poop' }.to raise_error(ArgumentError, 'Argument must be a Coordinate')
+        expect { c + 'poop' }.to raise_error(ArgumentError, 'Argument must be a Coordinate')
       end
 
     end
@@ -91,13 +91,13 @@ describe Coordinate do
       it 'subtracts the x value from its own' do
         base_coord = Coordinate.new(5, 5)
         operand_coord = Coordinate.new(2, 3)
-        expect( (base_coord - operand_coord).x ).to eq(3)
+        expect((base_coord - operand_coord).x).to eq(3)
       end
 
       it 'subtracts the y value from its own' do
         base_coord = Coordinate.new(5, 5)
         operand_coord = Coordinate.new(2, 3)
-        expect( (base_coord - operand_coord).y ).to eq(2)
+        expect((base_coord - operand_coord).y).to eq(2)
       end
 
     end
@@ -106,7 +106,7 @@ describe Coordinate do
 
       it 'raises an ArgumentError' do
         c = Coordinate.new(5, 5)
-        expect{ c - 'poop' }.to raise_error(ArgumentError, 'Argument must be a Coordinate')
+        expect { c - 'poop' }.to raise_error(ArgumentError, 'Argument must be a Coordinate')
       end
 
     end

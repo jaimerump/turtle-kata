@@ -1,4 +1,3 @@
-##
 # @author Jaime Rump
 # This class represents a canvas for a turtle to move across.
 # It's basically just a 2D array of strings.
@@ -47,8 +46,8 @@ class Canvas
   # The coordinate for the center of the grid
   # @return [Coordinate]
   def center
-    x = ( @grid.length.to_f / 2 ).floor # Keep in mind off-by-one
-    coord = Coordinate.new(x, x)
+    x = (@grid.length.to_f / 2).floor # Keep in mind off-by-one
+    Coordinate.new(x, x)
   end
 
   # The character at the given coordinate

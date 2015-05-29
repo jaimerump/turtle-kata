@@ -9,7 +9,7 @@ describe Turtle do
   describe '.initialize' do
 
     it "raises an error if param isn't a canvas" do
-      expect{ t = Turtle.new('canvas') }.to raise_error(ArgumentError, 'Argument is not a Canvas')
+      expect { t = Turtle.new('canvas') }.to raise_error(ArgumentError, 'Argument is not a Canvas')
     end
 
     it 'puts the turtle in the middle of the canvas' do
@@ -33,11 +33,11 @@ describe Turtle do
   describe '#turn_left' do
 
     it "raises ArgumentError if angle isn't integer" do
-      expect{ turtle.turn_left(45.00) }.to raise_error(ArgumentError, '45.0 is not an Integer')
+      expect { turtle.turn_left(45.00) }.to raise_error(ArgumentError, '45.0 is not an Integer')
     end
 
     it "raises ArgumentError if angle isn't multiple of 45" do
-      expect{ turtle.turn_left(48) }.to raise_error(ArgumentError, '48 is not a multiple of 45')
+      expect { turtle.turn_left(48) }.to raise_error(ArgumentError, '48 is not a multiple of 45')
     end
 
     it 'adds the param to the current angle' do
@@ -79,11 +79,11 @@ describe Turtle do
   describe '#turn_right' do
 
     it "raises ArgumentError if angle isn't integer" do
-      expect{ turtle.turn_right(45.00) }.to raise_error(ArgumentError, '45.0 is not an Integer')
+      expect { turtle.turn_right(45.00) }.to raise_error(ArgumentError, '45.0 is not an Integer')
     end
 
     it "raises ArgumentError if angle isn't multiple of 45" do
-      expect{ turtle.turn_right(48) }.to raise_error(ArgumentError, '48 is not a multiple of 45')
+      expect { turtle.turn_right(48) }.to raise_error(ArgumentError, '48 is not a multiple of 45')
     end
 
     it 'subtracts the param from the current angle' do
@@ -238,7 +238,7 @@ describe Turtle do
   describe '#move_forward' do
 
     it "throws an ArgumentError if the parameter isn't an Integer" do
-      expect{ turtle.move_forward('poop') }.to raise_error(ArgumentError, 'Argument must be an Integer')
+      expect { turtle.move_forward('poop') }.to raise_error(ArgumentError, 'Argument must be an Integer')
     end
 
     it "adds the turtle's step to its position" do
@@ -255,7 +255,7 @@ describe Turtle do
     end
 
     it 'throws a RangeError if the turtle falls off the canvas' do
-      expect{ turtle.move_forward(canvas.grid.length * 2) }.to raise_error(RangeError, 'Turtle fell off the Canvas')
+      expect { turtle.move_forward(canvas.grid.length * 2) }.to raise_error(RangeError, 'Turtle fell off the Canvas')
     end
 
   end
@@ -263,7 +263,7 @@ describe Turtle do
   describe '#move_backward' do
 
     it "throws an ArgumentError if the parameter isn't an Integer" do
-      expect{ turtle.move_backward('poop') }.to raise_error(ArgumentError, 'Argument must be an Integer')
+      expect { turtle.move_backward('poop') }.to raise_error(ArgumentError, 'Argument must be an Integer')
     end
 
     it "subtracts the turtle's step from its position" do
@@ -280,7 +280,7 @@ describe Turtle do
     end
 
     it 'throws a RangeError if the turtle falls off the canvas' do
-      expect{ turtle.move_backward(canvas.grid.length * 2) }.to raise_error(RangeError, 'Turtle fell off the Canvas')
+      expect { turtle.move_backward(canvas.grid.length * 2) }.to raise_error(RangeError, 'Turtle fell off the Canvas')
     end
 
   end

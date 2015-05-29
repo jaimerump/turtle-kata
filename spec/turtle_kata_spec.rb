@@ -17,7 +17,7 @@ describe TurtleKata do
     context "when the first arg isn't a string" do
 
       it 'raises ArgumentError' do
-        expect{ TurtleKata.run_instruction(12, turtle) }.to raise_error(ArgumentError, 'Instruction must be a string')
+        expect { TurtleKata.run_instruction(12, turtle) }.to raise_error(ArgumentError, 'Instruction must be a string')
       end
 
     end
@@ -25,7 +25,7 @@ describe TurtleKata do
     context "when the second arg isn't a turtle" do
 
       it 'raises ArgumentError' do
-        expect{ TurtleKata.run_instruction('FD 5', 'not turtle') }.to raise_error(ArgumentError, 'You must pass in a Turtle')
+        expect { TurtleKata.run_instruction('FD 5', 'not turtle') }.to raise_error(ArgumentError, 'You must pass in a Turtle')
       end
 
     end
@@ -76,7 +76,7 @@ describe TurtleKata do
       context 'when the bracketed code is invalid' do
 
         it 'raises ArgumentError' do
-          expect{ TurtleKata.run_instruction('REPEAT 2 [JK 5]', turtle) }.to raise_error(ArgumentError, 'Invalid instruction JK')
+          expect { TurtleKata.run_instruction('REPEAT 2 [JK 5]', turtle) }.to raise_error(ArgumentError, 'Invalid instruction JK')
         end
 
       end
@@ -86,14 +86,14 @@ describe TurtleKata do
     context 'when the instuction is something else' do
 
       it 'raises ArgumentError' do
-        expect{ TurtleKata.run_instruction('JK 5', turtle) }.to raise_error(ArgumentError, 'Invalid instruction JK')
+        expect { TurtleKata.run_instruction('JK 5', turtle) }.to raise_error(ArgumentError, 'Invalid instruction JK')
       end
 
     end
 
     it 'propagates errors from the turtle class' do
-      t = Turtle.new( Canvas.new(5) )
-      expect{ TurtleKata.run_instruction('FD 100', t) }.to raise_error(RangeError, 'Turtle fell off the Canvas')
+      t = Turtle.new(Canvas.new(5))
+      expect { TurtleKata.run_instruction('FD 100', t) }.to raise_error(RangeError, 'Turtle fell off the Canvas')
     end
 
   end

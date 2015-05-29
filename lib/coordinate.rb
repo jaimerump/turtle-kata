@@ -17,7 +17,7 @@ class Coordinate
   # @raise [ArgumentError] if one of the arguments isn't an integer
   def initialize(x, y)
     raise ArgumentError.new("#{x} is not an Integer") unless x.is_a? Integer
-    raise ArgumentError.new("#{y} is not an Integer")unless y.is_a? Integer
+    raise ArgumentError.new("#{y} is not an Integer") unless y.is_a? Integer
 
     @x = x
     @y = y
